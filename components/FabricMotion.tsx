@@ -267,7 +267,7 @@ export default function FabricMotion() {
           <span className="text-xs tracking-luxury text-gold uppercase font-serif">
             SILK DYE SELECTION:
           </span>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             {silkHues.map((hue) => (
               <button
                 key={hue.id}

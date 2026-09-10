@@ -163,7 +163,7 @@ export default function SignatureCollection() {
               initial={{ opacity: 0, scale: 0.94 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.94 }}
-              className="relative w-full max-w-2xl bg-dark border border-gold/30 p-8 sm:p-12 text-ivory z-10 space-y-6"
+              className="relative w-full max-w-2xl bg-dark border border-gold/30 p-6 sm:p-10 text-ivory z-10 space-y-6 max-h-[90vh] overflow-y-auto"
             >
               <button
                 onClick={() => setSelectedPiece(null)}

@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <SmoothScroll>
-      <main className="relative min-h-screen bg-ivory text-dark selection:bg-vermillion selection:text-ivory">
+      <main className="relative min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-ivory text-dark selection:bg-vermillion selection:text-ivory">
         {/* Custom Luxury Magnetic Cursor */}
         <CustomCursor />
 

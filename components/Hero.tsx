@@ -322,7 +322,7 @@ export default function Hero({ onExploreClick, onStoryClick }: HeroProps) {
             <div
               ref={curtainSealRef}
               onClick={handleOpenCurtainClick}
-              className="pointer-events-auto relative w-72 sm:w-80 max-w-[88vw] bg-[#121110]/95 backdrop-blur-xl border border-gold/50 shadow-[0_0_80px_rgba(184,154,90,0.5),0_30px_70px_rgba(0,0,0,0.95)] flex flex-col items-center justify-center p-6 text-center group cursor-pointer hover:scale-[1.03] transition-transform duration-300"
+              className="pointer-events-auto relative w-[270px] sm:w-80 max-w-[92vw] bg-[#121110]/95 backdrop-blur-xl border border-gold/50 shadow-[0_0_80px_rgba(184,154,90,0.5),0_30px_70px_rgba(0,0,0,0.95)] flex flex-col items-center justify-center p-4 sm:p-6 text-center group cursor-pointer hover:scale-[1.03] transition-transform duration-300"
               style={{
                 transformOrigin: "center center",
                 clipPath:
@@ -366,7 +366,7 @@ export default function Hero({ onExploreClick, onStoryClick }: HeroProps) {
               </div>
 
               {/* Main Brand Name */}
-              <h2 className="font-serif text-2xl sm:text-3xl tracking-[0.25em] text-ivory font-medium my-1">
+              <h2 className="font-serif text-xl sm:text-3xl tracking-[0.2em] sm:tracking-[0.25em] text-ivory font-medium my-0.5 sm:my-1">
                 {BRAND.name}
               </h2>
 
@@ -378,7 +378,7 @@ export default function Hero({ onExploreClick, onStoryClick }: HeroProps) {
               {/* Royal Action Pill Button */}
               <div className="relative group-hover:scale-105 transition-transform">
                 <div className="absolute -inset-1 bg-gradient-to-r from-gold/20 via-vermillion/40 to-gold/20 rounded-full blur-sm opacity-70 group-hover:opacity-100 transition-opacity" />
-                <span className="relative text-[9px] sm:text-[10px] tracking-widest text-ivory uppercase font-serif bg-[#1E1B18] px-4 py-1.5 rounded-full border border-gold/60 group-hover:border-gold transition-colors flex items-center gap-2 shadow-lg">
+                <span className="relative text-[8px] sm:text-[10px] tracking-widest text-ivory uppercase font-serif bg-[#1E1B18] px-3 sm:px-4 py-1.5 rounded-full border border-gold/60 group-hover:border-gold transition-colors flex items-center gap-1.5 sm:gap-2 shadow-lg">
                   <span className="w-1.5 h-1.5 rounded-full bg-vermillion animate-pulse" />
                   <span>SCROLL TO DRAW CURTAINS</span>
                   <span className="text-gold animate-bounce">↓</span>
@@ -520,7 +520,7 @@ export default function Hero({ onExploreClick, onStoryClick }: HeroProps) {
             <div className="absolute -inset-x-10 -inset-y-10 bg-radial from-gold/25 via-gold/5 to-transparent blur-3xl crazy-aura-glow pointer-events-none" />
 
             <h1
-              className="relative font-serif text-6xl sm:text-8xl md:text-9xl lg:text-[11.5rem] tracking-[0.06em] font-light leading-[0.88] flex items-center flex-nowrap whitespace-nowrap select-none"
+              className="relative font-serif text-[11.5vw] sm:text-8xl md:text-9xl lg:text-[11.5rem] tracking-[0.03em] sm:tracking-[0.06em] font-light leading-[0.9] flex items-center flex-nowrap select-none"
               aria-label={BRAND.name}
             >
               {brandLetters.map((letter, index) => (

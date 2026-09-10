@@ -67,7 +67,7 @@ export default function RootLayout({
     >
       <body
         suppressHydrationWarning
-        className="min-h-screen bg-ivory text-dark font-sans relative antialiased selection:bg-vermillion selection:text-ivory"
+        className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-ivory text-dark font-sans relative antialiased selection:bg-vermillion selection:text-ivory"
       >
         {/* Film grain layer for cinematic texture */}
         <div className="film-grain" aria-hidden="true" />

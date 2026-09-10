@@ -33,7 +33,7 @@ export default function BrandStory() {
               whileInView={{ y: "0%", opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif text-5xl sm:text-7xl lg:text-8xl tracking-tight text-dark font-light leading-[0.9]"
+              className="font-serif text-4xl sm:text-7xl lg:text-8xl tracking-tight text-dark font-light leading-[0.9]"
             >
               MORE THAN
             </motion.h2>
@@ -45,7 +45,7 @@ export default function BrandStory() {
               whileInView={{ y: "0%", opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.9, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif text-5xl sm:text-7xl lg:text-8xl tracking-tight text-vermillion italic font-normal leading-[0.9]"
+              className="font-serif text-4xl sm:text-7xl lg:text-8xl tracking-tight text-vermillion italic font-normal leading-[0.9]"
             >
               A SAREE.
             </motion.h2>

@@ -30,7 +30,7 @@ export default function Contact({ onOpenInquiry }: ContactProps) {
 
       {/* Monumental Central Typography */}
       <div className="relative z-10 max-w-7xl mx-auto w-full my-auto py-12">
-        <h2 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] tracking-tight text-ivory font-light leading-[0.92]">
+        <h2 className="font-serif text-4xl sm:text-7xl md:text-8xl lg:text-[7.5rem] tracking-tight text-ivory font-light leading-[0.92]">
           LET&apos;S CREATE
           <br />
           <span className="italic font-normal text-gold-light">SOMETHING</span>
@@ -38,7 +38,7 @@ export default function Contact({ onOpenInquiry }: ContactProps) {
           TIMELESS.
         </h2>
 
-        <p className="mt-8 text-base sm:text-xl font-light text-ivory/80 max-w-xl leading-relaxed">
+        <p className="mt-6 sm:mt-8 text-sm sm:text-xl font-light text-ivory/80 max-w-xl leading-relaxed">
           &ldquo;Bring your collection to the digital world.&rdquo;
           <br />
           <span className="text-xs sm:text-sm text-ivory/50">
@@ -46,11 +46,11 @@ export default function Contact({ onOpenInquiry }: ContactProps) {
           </span>
         </p>
 
-        {/* Action Buttons */}
-        <div className="mt-10 flex flex-wrap items-center gap-6">
+        {/* Action Buttons (Mobile Full-Width Responsive) */}
+        <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
           <button
             onClick={onOpenInquiry}
-            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-vermillion hover:bg-vermillion-light text-ivory text-xs tracking-luxury uppercase font-serif transition-all duration-300 shadow-2xl"
+            className="group relative inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-vermillion hover:bg-vermillion-light text-ivory text-xs tracking-luxury uppercase font-serif transition-all duration-300 shadow-2xl w-full sm:w-auto text-center"
           >
             <span className="font-medium">START A CONVERSATION</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
@@ -58,7 +58,7 @@ export default function Contact({ onOpenInquiry }: ContactProps) {
 
           <a
             href="#collection"
-            className="inline-flex items-center gap-2 px-8 py-4 border border-gold/40 hover:border-gold text-ivory hover:text-gold text-xs tracking-luxury uppercase font-serif transition-colors"
+            className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 border border-gold/40 hover:border-gold text-ivory hover:text-gold text-xs tracking-luxury uppercase font-serif transition-colors w-full sm:w-auto text-center"
           >
             <span>VIEW ARCHIVE COLLECTION</span>
             <ArrowUpRight className="w-4 h-4" />

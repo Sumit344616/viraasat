@@ -48,7 +48,7 @@ export default function EditorialFilm() {
               whileInView={{ y: "0%", opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif text-5xl sm:text-7xl lg:text-9xl tracking-tight text-ivory font-light leading-[0.88] drop-shadow-2xl"
+              className="font-serif text-4xl sm:text-7xl lg:text-9xl tracking-tight text-ivory font-light leading-[0.88] drop-shadow-2xl"
             >
               THE SAREE,
             </motion.h2>
@@ -59,7 +59,7 @@ export default function EditorialFilm() {
               whileInView={{ y: "0%", opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.9, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif text-5xl sm:text-7xl lg:text-9xl tracking-tight text-gold-light italic font-normal leading-[0.88] drop-shadow-2xl"
+              className="font-serif text-4xl sm:text-7xl lg:text-9xl tracking-tight text-gold-light italic font-normal leading-[0.88] drop-shadow-2xl"
             >
               REIMAGINED.
             </motion.h2>

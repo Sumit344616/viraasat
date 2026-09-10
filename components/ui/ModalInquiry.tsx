@@ -53,7 +53,7 @@ export default function ModalInquiry({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: "spring", damping: 30, stiffness: 350 }}
-            className="relative w-full max-w-2xl bg-dark-surface border border-gold/30 rounded-none shadow-2xl p-8 sm:p-12 text-ivory z-10 overflow-hidden"
+            className="relative w-full max-w-2xl bg-dark-surface border border-gold/30 rounded-none shadow-2xl p-6 sm:p-10 text-ivory z-10 max-h-[90vh] overflow-y-auto"
           >
             {/* Subtle antique gold border glow */}
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent" />
