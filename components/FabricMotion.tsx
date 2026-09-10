@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Sliders, Eye, RefreshCw } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,6 +13,7 @@ export default function FabricMotion() {
   const [selectedHue, setSelectedHue] = useState<"vermillion" | "gold" | "noir" | "ivory">("vermillion");
   const [inspectMode, setInspectMode] = useState<"drape" | "weave" | "selvedge">("drape");
   const [mouseTilt, setMouseTilt] = useState({ x: 0, y: 0 });
+  const [isCycling, setIsCycling] = useState(false);
 
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -170,42 +172,85 @@ export default function FabricMotion() {
             transformStyle: "preserve-3d",
           }}
         >
-          {/* Main Macro Silk Visual */}
-          <div className="relative w-full h-full">
-            <Image
-              src={currentHue.image}
-              alt={currentHue.name}
-              fill
-              sizes="(max-width: 1024px) 100vw, 1200px"
-              className="object-cover transition-all duration-700 filter brightness-95 contrast-105"
-            />
+          {/* Main Macro Silk Visual with Focus Pull / Blur & Rise Animation */}
+          <div className="relative w-full h-full overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentHue.id}
+                initial={{
+                  opacity: 0,
+                  scale: 1.08,
+                  filter: "blur(16px)",
+                  y: 18,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  filter: "blur(0px)",
+                  y: 0,
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.96,
+                  filter: "blur(14px)",
+                  y: -14,
+                }}
+                transition={{
+                  duration: 0.65,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="absolute inset-0 w-full h-full"
+              >
+                <Image
+                  src={currentHue.image}
+                  alt={currentHue.name}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 1200px"
+                  className="object-cover filter brightness-95 contrast-105"
+                  priority
+                />
+              </motion.div>
+            </AnimatePresence>
+
             {/* Dynamic Light Sheen Overlay that tracks mouse */}
             <div
-              className="absolute inset-0 pointer-events-none transition-opacity duration-300"
+              className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-10"
               style={{
                 background: `radial-gradient(circle at ${50 + mouseTilt.x * 2}% ${
                   50 - mouseTilt.y * 2
                 }%, rgba(213, 189, 131, 0.3) 0%, transparent 60%)`,
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-dark/40 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-dark/40 pointer-events-none z-10" />
           </div>
 
           {/* Floating Inspection HUD Badge */}
           <div className="absolute bottom-6 left-6 right-6 z-20 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 pointer-events-none">
-            <div className="bg-dark/80 backdrop-blur-md px-5 py-3 border border-gold/30">
-              <span className="text-[10px] text-gold uppercase tracking-luxury font-serif block">
-                TEXTILE SPECIFICATION • 100% HANDLOOM
-              </span>
-              <h4 className="text-xl sm:text-2xl font-serif text-ivory">
-                {currentHue.name}
-              </h4>
-              <p className="text-xs text-gold-light/80 font-serif italic">
-                {currentHue.desc}
-              </p>
-            </div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentHue.id}
+                initial={{ opacity: 0, x: -24, y: 8, filter: "blur(6px)" }}
+                animate={{ opacity: 1, x: 0, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, x: 24, y: -8, filter: "blur(6px)" }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="bg-dark/85 backdrop-blur-md px-5 py-3 border border-gold/30 shadow-xl"
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping" />
+                  <span className="text-[10px] text-gold uppercase tracking-luxury font-serif">
+                    TEXTILE SPECIFICATION • 100% HANDLOOM
+                  </span>
+                </div>
+                <h4 className="text-xl sm:text-2xl font-serif text-ivory">
+                  {currentHue.name}
+                </h4>
+                <p className="text-xs text-gold-light/80 font-serif italic">
+                  {currentHue.desc}
+                </p>
+              </motion.div>
+            </AnimatePresence>
 
-            <div className="bg-dark/70 backdrop-blur-md px-4 py-2 border border-gold/20 text-[10px] tracking-widest text-ivory/60 uppercase font-serif">
+            <div className="bg-dark/75 backdrop-blur-md px-4 py-2 border border-gold/20 text-[10px] tracking-widest text-ivory/60 uppercase font-serif">
               DRAG MOUSE OVER SURFACE TO SHIFT DRAPE PERSPECTIVE
             </div>
           </div>
@@ -227,10 +272,10 @@ export default function FabricMotion() {
               <button
                 key={hue.id}
                 onClick={() => setSelectedHue(hue.id)}
-                className={`group relative flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300 ${
+                className={`group relative flex items-center gap-2 px-3.5 py-1.5 rounded-full border transition-all duration-300 ${
                   selectedHue === hue.id
-                    ? "border-gold bg-gold/15 text-ivory shadow-md shadow-gold/10"
-                    : "border-ivory/20 hover:border-ivory/60 text-ivory/70"
+                    ? "border-gold bg-gold/20 text-ivory shadow-lg shadow-gold/20 scale-105"
+                    : "border-ivory/20 hover:border-ivory/60 text-ivory/70 hover:scale-102"
                 }`}
                 title={hue.desc}
               >
@@ -241,6 +286,13 @@ export default function FabricMotion() {
                 <span className="text-[11px] font-serif tracking-wider uppercase">
                   {hue.name}
                 </span>
+                {selectedHue === hue.id && (
+                  <motion.span
+                    layoutId="activeDye"
+                    className="absolute inset-0 rounded-full border border-gold pointer-events-none"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </button>
             ))}
           </div>
@@ -250,6 +302,7 @@ export default function FabricMotion() {
         <div className="flex items-center gap-4 sm:gap-6">
           <button
             onClick={() => {
+              setIsCycling(true);
               const nextHue =
                 selectedHue === "vermillion"
                   ? "gold"
@@ -259,10 +312,15 @@ export default function FabricMotion() {
                   ? "ivory"
                   : "vermillion";
               setSelectedHue(nextHue);
+              setTimeout(() => setIsCycling(false), 650);
             }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 border border-gold/30 hover:border-gold text-gold text-[11px] font-serif tracking-wider uppercase transition-all duration-300"
+            className="inline-flex items-center gap-2 px-4 py-1.5 border border-gold/40 hover:border-gold bg-dark/60 hover:bg-gold/10 text-gold text-[11px] font-serif tracking-wider uppercase transition-all duration-300 shadow-md group"
           >
-            <RefreshCw className="w-3.5 h-3.5" />
+            <RefreshCw
+              className={`w-3.5 h-3.5 transition-transform duration-700 ${
+                isCycling ? "rotate-180 text-ivory" : "group-hover:rotate-45"
+              }`}
+            />
             <span>CYCLE SPECIMEN</span>
           </button>
         </div>

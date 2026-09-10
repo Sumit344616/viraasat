@@ -32,8 +32,6 @@ export default function Hero({ onExploreClick, onStoryClick }: HeroProps) {
   const rightCurtainRef = useRef<HTMLDivElement>(null);
   const curtainSealRef = useRef<HTMLDivElement>(null);
 
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
   // Smooth scroll handler for seal click
   const handleOpenCurtainClick = () => {
     if (containerRef.current) {
@@ -49,20 +47,13 @@ export default function Hero({ onExploreClick, onStoryClick }: HeroProps) {
     }
   };
 
-  // Mouse Parallax (Restrained 5-12px)
+  // Prevent browser scroll jump and flash on initial load
   useEffect(() => {
-    if (typeof window === "undefined" || window.matchMedia("(pointer: coarse)").matches) {
-      return;
+    if (typeof window !== "undefined") {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
     }
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 12;
-      const y = (e.clientY / window.innerHeight - 0.5) * 10;
-      setMousePos({ x, y });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   // GSAP Pinned ScrollTrigger Timeline
@@ -279,13 +270,13 @@ export default function Hero({ onExploreClick, onStoryClick }: HeroProps) {
            ===================================================================== */}
         <div
           ref={curtainWrapperRef}
-          className="absolute inset-0 z-50 overflow-hidden pointer-events-auto select-none"
+          className="absolute inset-0 z-50 overflow-hidden pointer-events-auto select-none bg-[#100305]"
           aria-label="Grand Royal Saree Curtain - Scroll down to draw curtains"
         >
           {/* Left Curtain Saree Panel (Authentic Banarasi Silk Saree with 24K Gold Zari Border) */}
           <div
             ref={leftCurtainRef}
-            className="absolute top-0 left-0 w-1/2 h-full shadow-[25px_0_65px_rgba(0,0,0,0.95)] overflow-hidden"
+            className="absolute top-0 left-0 w-1/2 h-full shadow-[25px_0_65px_rgba(0,0,0,0.95)] overflow-hidden bg-[#180407]"
             style={{ willChange: "transform" }}
           >
             <div className="relative w-full h-[106%] -top-4 scale-[1.18] origin-right">
@@ -294,6 +285,7 @@ export default function Hero({ onExploreClick, onStoryClick }: HeroProps) {
                 alt="Royal Banarasi Silk Saree Curtain Left Drape"
                 fill
                 priority
+                loading="eager"
                 sizes="50vw"
                 className="object-cover object-right filter brightness-95 contrast-105 select-none pointer-events-none"
               />
@@ -306,7 +298,7 @@ export default function Hero({ onExploreClick, onStoryClick }: HeroProps) {
           {/* Right Curtain Saree Panel (Authentic Banarasi Silk Saree with 24K Gold Zari Border) */}
           <div
             ref={rightCurtainRef}
-            className="absolute top-0 right-0 w-1/2 h-full shadow-[-25px_0_65px_rgba(0,0,0,0.95)] overflow-hidden"
+            className="absolute top-0 right-0 w-1/2 h-full shadow-[-25px_0_65px_rgba(0,0,0,0.95)] overflow-hidden bg-[#180407]"
             style={{ willChange: "transform" }}
           >
             <div className="relative w-full h-[106%] -top-4 scale-[1.18] origin-left">
@@ -315,6 +307,7 @@ export default function Hero({ onExploreClick, onStoryClick }: HeroProps) {
                 alt="Royal Banarasi Silk Saree Curtain Right Drape"
                 fill
                 priority
+                loading="eager"
                 sizes="50vw"
                 className="object-cover object-left filter brightness-95 contrast-105 select-none pointer-events-none"
               />
@@ -324,42 +317,97 @@ export default function Hero({ onExploreClick, onStoryClick }: HeroProps) {
             <div className="absolute top-0 left-0 w-10 h-full bg-gradient-to-r from-gold/35 to-transparent pointer-events-none" />
           </div>
 
-          {/* Center Grand Royal Atelier Medallion / Seal (Perfect Mathematical Flex Center) */}
+          {/* Center Grand Royal Atelier Imperial Brooch / Clasp (Perfect Mathematical Flex Center) */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
             <div
               ref={curtainSealRef}
               onClick={handleOpenCurtainClick}
-              className="pointer-events-auto relative w-48 h-48 sm:w-56 sm:h-56 rounded-full border-2 border-gold bg-[#11100F]/95 shadow-[0_0_65px_rgba(184,154,90,0.95)] flex flex-col items-center justify-center p-5 text-center group cursor-pointer hover:scale-105 transition-transform"
-              style={{ transformOrigin: "center center" }}
+              className="pointer-events-auto relative w-72 sm:w-80 max-w-[88vw] bg-[#121110]/95 backdrop-blur-xl border border-gold/50 shadow-[0_0_80px_rgba(184,154,90,0.5),0_30px_70px_rgba(0,0,0,0.95)] flex flex-col items-center justify-center p-6 text-center group cursor-pointer hover:scale-[1.03] transition-transform duration-300"
+              style={{
+                transformOrigin: "center center",
+                clipPath:
+                  "polygon(14px 0%, calc(100% - 14px) 0%, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0% calc(100% - 14px), 0% 14px)",
+              }}
             >
-              {/* Outer spinning ornamental gold ring */}
+              {/* Inner Ornamental Inset Gold Border */}
               <div
-                className="absolute inset-2 rounded-full border border-gold/40 border-dashed animate-spin"
-                style={{ animationDuration: "24s" }}
+                className="absolute inset-1.5 border border-gold/30 pointer-events-none"
+                style={{
+                  clipPath:
+                    "polygon(12px 0%, calc(100% - 12px) 0%, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0% calc(100% - 12px), 0% 12px)",
+                }}
               />
 
-              <span className="text-gold text-xl sm:text-2xl animate-spin mb-1" style={{ animationDuration: "10s" }}>
-                ✦
-              </span>
-              <span className="font-serif text-xl sm:text-2xl tracking-[0.25em] text-ivory font-medium">
+              {/* Corner Gold Studs */}
+              <span className="absolute top-2 left-2 text-gold/60 text-[10px]">✦</span>
+              <span className="absolute top-2 right-2 text-gold/60 text-[10px]">✦</span>
+              <span className="absolute bottom-2 left-2 text-gold/60 text-[10px]">✦</span>
+              <span className="absolute bottom-2 right-2 text-gold/60 text-[10px]">✦</span>
+
+              {/* Top Arch Imperial Finial & Crown */}
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className="w-8 h-[1px] bg-gradient-to-r from-transparent to-gold/60" />
+                <span
+                  className="text-gold text-sm animate-spin"
+                  style={{ animationDuration: "12s" }}
+                >
+                  ✦
+                </span>
+                <span className="text-[9px] tracking-[0.3em] uppercase text-gold font-serif">
+                  ROYAL PARDA SEAL
+                </span>
+                <span
+                  className="text-gold text-sm animate-spin"
+                  style={{ animationDuration: "12s" }}
+                >
+                  ✦
+                </span>
+                <span className="w-8 h-[1px] bg-gradient-to-l from-transparent to-gold/60" />
+              </div>
+
+              {/* Main Brand Name */}
+              <h2 className="font-serif text-2xl sm:text-3xl tracking-[0.25em] text-ivory font-medium my-1">
                 {BRAND.name}
-              </span>
-              <span className="text-[9px] tracking-ultra text-gold-light uppercase font-sans mt-0.5">
-                HAUTE COUTURE ARCHIVE
-              </span>
-              <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent my-2" />
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-[8px] sm:text-[9px] tracking-widest text-ivory/90 uppercase font-serif bg-vermillion/90 px-3 py-1 rounded-full border border-gold/40 group-hover:bg-vermillion transition-colors flex items-center gap-1.5 shadow-md">
+              </h2>
+
+              {/* Sub-Brand Tagline */}
+              <p className="text-[9px] tracking-[0.35em] text-gold-light uppercase font-sans mb-3">
+                HAUTE COUTURE ARCHIVE • EST. 1928
+              </p>
+
+              {/* Royal Action Pill Button */}
+              <div className="relative group-hover:scale-105 transition-transform">
+                <div className="absolute -inset-1 bg-gradient-to-r from-gold/20 via-vermillion/40 to-gold/20 rounded-full blur-sm opacity-70 group-hover:opacity-100 transition-opacity" />
+                <span className="relative text-[9px] sm:text-[10px] tracking-widest text-ivory uppercase font-serif bg-[#1E1B18] px-4 py-1.5 rounded-full border border-gold/60 group-hover:border-gold transition-colors flex items-center gap-2 shadow-lg">
+                  <span className="w-1.5 h-1.5 rounded-full bg-vermillion animate-pulse" />
                   <span>SCROLL TO DRAW CURTAINS</span>
                   <span className="text-gold animate-bounce">↓</span>
                 </span>
               </div>
 
-              {/* Hanging Royal Golden Tassels */}
-              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1.5 pointer-events-none">
-                <div className="w-[1px] h-5 bg-gold/70" />
-                <div className="w-2 h-2 rounded-full bg-gold shadow-[0_0_8px_rgba(255,230,153,0.9)]" />
-                <div className="w-[1px] h-5 bg-gold/70" />
+              {/* Hanging Royal Golden Zardozi Tassels (Latkan) */}
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-start gap-3 pointer-events-none animate-tassel-sway">
+                {/* Left Mini Tassel */}
+                <div className="flex flex-col items-center">
+                  <div className="w-[1px] h-4 bg-gold/70" />
+                  <div className="w-2 h-2 rounded-full bg-gold shadow-[0_0_8px_rgba(255,230,153,0.9)]" />
+                  <div className="w-[1px] h-3 bg-gold/50" />
+                </div>
+                {/* Center Grand Tassel */}
+                <div className="flex flex-col items-center -mt-1">
+                  <div className="w-[1.5px] h-6 bg-gradient-to-b from-gold via-vermillion to-gold" />
+                  <div className="w-2.5 h-2.5 rotate-45 border border-gold bg-dark shadow-[0_0_10px_rgba(255,230,153,0.95)] flex items-center justify-center">
+                    <span className="w-1 h-1 bg-gold rounded-full" />
+                  </div>
+                  <div className="w-[1.5px] h-4 bg-gold/80" />
+                  <div className="w-2 h-3 bg-gradient-to-b from-gold to-gold-dark rounded-b-sm shadow-sm" />
+                </div>
+                {/* Right Mini Tassel */}
+                <div className="flex flex-col items-center">
+                  <div className="w-[1px] h-4 bg-gold/70" />
+                  <div className="w-2 h-2 rounded-full bg-gold shadow-[0_0_8px_rgba(255,230,153,0.9)]" />
+                  <div className="w-[1px] h-3 bg-gold/50" />
+                </div>
               </div>
             </div>
           </div>
@@ -367,10 +415,7 @@ export default function Hero({ onExploreClick, onStoryClick }: HeroProps) {
 
         {/* Layer 0: Deep Atmospheric Background & Ambient Glow */}
         <div
-          className="absolute inset-0 z-0 bg-dark pointer-events-none transition-transform duration-700 ease-out"
-          style={{
-            transform: `translate(${mousePos.x * 0.4}px, ${mousePos.y * 0.4}px)`,
-          }}
+          className="absolute inset-0 z-0 bg-dark pointer-events-none"
         >
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] rounded-full bg-vermillion/15 blur-[120px] pointer-events-none" />
           <div className="absolute bottom-10 right-10 w-[40vw] h-[40vw] rounded-full bg-gold/10 blur-[140px] pointer-events-none" />
@@ -400,10 +445,7 @@ export default function Hero({ onExploreClick, onStoryClick }: HeroProps) {
           {/* Saree Ambient Shadow */}
           <div
             ref={sareeShadowRef}
-            className="absolute -bottom-20 right-0 w-[85vw] sm:w-[55vw] aspect-[3/4] opacity-35 filter blur-2xl transition-transform"
-            style={{
-              transform: `translate(${mousePos.x * 0.7}px, ${mousePos.y * 0.7}px)`,
-            }}
+            className="absolute -bottom-20 right-0 w-[85vw] sm:w-[55vw] aspect-[3/4] opacity-35 filter blur-2xl"
           >
             <div className="w-full h-full rounded-full bg-gradient-to-br from-vermillion-dark via-dark to-transparent" />
           </div>
@@ -417,9 +459,8 @@ export default function Hero({ onExploreClick, onStoryClick }: HeroProps) {
           {/* Main Saree Fabric Silhouette Layer (Organic curved saree pallu) */}
           <div
             ref={sareeMainRef}
-            className="absolute -bottom-16 sm:-bottom-10 right-[-10%] sm:right-[5%] w-[95vw] sm:w-[60vw] max-w-[850px] aspect-[3/4] transition-transform duration-500 ease-out"
+            className="absolute -bottom-16 sm:-bottom-10 right-[-10%] sm:right-[5%] w-[95vw] sm:w-[60vw] max-w-[850px] aspect-[3/4]"
             style={{
-              transform: `translate(${mousePos.x * 1.2}px, ${mousePos.y * 1.2}px) rotate(-1deg)`,
               transformOrigin: "bottom right",
             }}
           >

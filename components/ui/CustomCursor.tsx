@@ -1,11 +1,21 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function CustomCursor() {
-  const [position, setPosition] = useState({ x: -100, y: -100 });
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
+
+  // High-performance springs directly updating GPU transforms (Zero React re-renders)
+  const dotX = useSpring(mouseX, { damping: 40, stiffness: 600, mass: 0.05 });
+  const dotY = useSpring(mouseY, { damping: 40, stiffness: 600, mass: 0.05 });
+
+  const followerX = useSpring(mouseX, { damping: 28, stiffness: 320, mass: 0.15 });
+  const followerY = useSpring(mouseY, { damping: 28, stiffness: 320, mass: 0.15 });
+
   const [cursorType, setCursorType] = useState<"default" | "pointer" | "view" | "hidden">("default");
+  const cursorTypeRef = useRef<"default" | "pointer" | "view" | "hidden">("default");
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
@@ -16,28 +26,40 @@ export default function CustomCursor() {
     }
 
     const handleMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
 
-      // Check hovered element
+      // Check hovered element without triggering unnecessary React renders
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
       const viewTarget = target.closest('[data-cursor="view"]');
       const clickTarget = target.closest("button, a, input, [role='button'], [data-cursor='pointer']");
 
+      let nextType: "default" | "pointer" | "view" | "hidden" = "default";
       if (viewTarget) {
-        setCursorType("view");
+        nextType = "view";
       } else if (clickTarget) {
-        setCursorType("pointer");
-      } else {
-        setCursorType("default");
+        nextType = "pointer";
+      }
+
+      if (cursorTypeRef.current !== nextType) {
+        cursorTypeRef.current = nextType;
+        setCursorType(nextType);
       }
     };
 
-    const handleMouseLeave = () => setCursorType("hidden");
-    const handleMouseEnter = () => setCursorType("default");
+    const handleMouseLeave = () => {
+      cursorTypeRef.current = "hidden";
+      setCursorType("hidden");
+    };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    const handleMouseEnter = () => {
+      cursorTypeRef.current = "default";
+      setCursorType("default");
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     document.addEventListener("mouseleave", handleMouseLeave);
     document.addEventListener("mouseenter", handleMouseEnter);
 
@@ -46,7 +68,7 @@ export default function CustomCursor() {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, []);
+  }, [mouseX, mouseY]);
 
   if (isTouchDevice || cursorType === "hidden") return null;
 
@@ -54,21 +76,29 @@ export default function CustomCursor() {
     <>
       {/* Inner precise dot */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-gold pointer-events-none z-[9999] mix-blend-difference"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-gold pointer-events-none z-[9999] mix-blend-difference will-change-transform"
+        style={{
+          x: dotX,
+          y: dotY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
         animate={{
-          x: position.x - 4,
-          y: position.y - 4,
           opacity: cursorType === "view" ? 0 : 1,
         }}
-        transition={{ type: "spring", damping: 30, stiffness: 450, mass: 0.1 }}
+        transition={{ duration: 0.15 }}
       />
 
       {/* Outer follower ring / VIEW label */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9998] flex items-center justify-center backdrop-blur-[2px] transition-colors"
+        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9998] flex items-center justify-center will-change-transform"
+        style={{
+          x: followerX,
+          y: followerY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
         animate={{
-          x: cursorType === "view" ? position.x - 42 : position.x - 18,
-          y: cursorType === "view" ? position.y - 42 : position.y - 18,
           width: cursorType === "view" ? 84 : cursorType === "pointer" ? 44 : 36,
           height: cursorType === "view" ? 84 : cursorType === "pointer" ? 44 : 36,
           backgroundColor:
@@ -85,7 +115,7 @@ export default function CustomCursor() {
               : "rgba(184, 154, 90, 0.4)",
           borderWidth: cursorType === "view" ? 1.5 : 1,
         }}
-        transition={{ type: "spring", damping: 25, stiffness: 280, mass: 0.2 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
       >
         {cursorType === "view" && (
           <span className="text-[10px] tracking-luxury text-ivory font-medium uppercase font-serif">

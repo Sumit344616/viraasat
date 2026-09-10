@@ -3,7 +3,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import ImageReveal from "./ui/ImageReveal";
-import CurtainTransition from "./ui/CurtainTransition";
 
 export default function Weaving() {
   const pillars = [
@@ -178,8 +177,24 @@ export default function Weaving() {
         </div>
       </div>
 
-      {/* Fabric Curtain Transition to next section */}
-      <CurtainTransition color="vermillion" direction="right" />
+      {/* Imperial 24K Gold Zari Heirloom Divider (Replaces clunky red overlay with an outstanding couture transition) */}
+      <div className="relative z-20 max-w-7xl mx-auto w-full pt-20 pb-4">
+        <div className="relative flex items-center justify-center">
+          {/* Outer hairline gold runners */}
+          <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-gold/40 to-gold" />
+
+          {/* Centered Royal Heirloom Guild Seal */}
+          <div className="mx-3 sm:mx-8 px-4 sm:px-6 py-2 rounded-full border border-gold/40 bg-dark-surface/95 backdrop-blur-md shadow-[0_0_35px_rgba(184,154,90,0.35)] flex items-center gap-2 sm:gap-3">
+            <span className="text-gold text-xs animate-spin" style={{ animationDuration: "14s" }}>✦</span>
+            <span className="text-[8px] sm:text-[10px] tracking-[0.3em] uppercase text-gold font-serif whitespace-nowrap">
+              9,000 WARP THREADS • BANARAS GUILD • PURE 24K GOLD
+            </span>
+            <span className="text-gold text-xs animate-spin" style={{ animationDuration: "14s" }}>✦</span>
+          </div>
+
+          <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent via-gold/40 to-gold" />
+        </div>
+      </div>
     </section>
   );
 }

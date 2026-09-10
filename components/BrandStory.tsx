@@ -92,21 +92,55 @@ export default function BrandStory() {
             </div>
           </div>
 
-          {/* Right Column: Line-by-line Narrative */}
+          {/* Right Column: Word-by-Word Streaming Story Narrative */}
           <div className="lg:col-span-6 space-y-8 lg:pl-4">
+            <div className="flex items-center gap-2 text-gold-dark font-serif text-[11px] tracking-luxury">
+              <span className="w-2 h-2 rounded-full bg-vermillion animate-pulse" />
+              <span className="uppercase">THE ATELIER MANIFESTO • LIVE STORY TRANSCRIPTION</span>
+            </div>
+
             <div className="space-y-6">
-              {storyParagraphs.map((para, index) => (
-                <motion.p
-                  key={index}
-                  initial={{ opacity: 0, y: 25 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.8, delay: index * 0.18, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-base sm:text-lg text-dark/80 font-light leading-relaxed font-sans"
-                >
-                  {para}
-                </motion.p>
-              ))}
+              {storyParagraphs.map((para, paraIndex) => {
+                const words = para.split(" ");
+                return (
+                  <motion.p
+                    key={paraIndex}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{
+                      staggerChildren: 0.03,
+                      delayChildren: paraIndex * 0.28,
+                    }}
+                    className="text-base sm:text-lg text-dark/85 font-light leading-relaxed font-sans"
+                  >
+                    {words.map((word, wordIndex) => (
+                      <motion.span
+                        key={wordIndex}
+                        variants={{
+                          hidden: {
+                            opacity: 0,
+                            y: 8,
+                            filter: "blur(5px)",
+                          },
+                          visible: {
+                            opacity: 1,
+                            y: 0,
+                            filter: "blur(0px)",
+                            transition: {
+                              duration: 0.2,
+                              ease: [0.16, 1, 0.3, 1],
+                            },
+                          },
+                        }}
+                        className="inline-block mr-[0.28em] will-change-transform"
+                      >
+                        {word}
+                      </motion.span>
+                    ))}
+                  </motion.p>
+                );
+              })}
             </div>
 
             {/* Signature & Provenance */}

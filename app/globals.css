@@ -244,3 +244,44 @@ body {
   stroke-dasharray: 1000;
   animation: threadFlow 6s linear infinite;
 }
+
+/* Royal Brooch & Tassel Animations */
+@keyframes tasselSway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(4deg);
+  }
+  75% {
+    transform: rotate(-4deg);
+  }
+}
+
+.animate-tassel-sway {
+  transform-origin: top center;
+  animation: tasselSway 4.5s ease-in-out infinite;
+}
+
+@keyframes royalSheen {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.royal-gold-border {
+  background: linear-gradient(
+    90deg,
+    #B89A5A 0%,
+    #FFE57F 25%,
+    #FFF4D2 50%,
+    #D5BD83 75%,
+    #B89A5A 100%
+  );
+  background-size: 200% 100%;
+  animation: royalSheen 5s linear infinite;
+}
+
