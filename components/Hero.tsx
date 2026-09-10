@@ -282,81 +282,85 @@ export default function Hero({ onExploreClick, onStoryClick }: HeroProps) {
           className="absolute inset-0 z-50 overflow-hidden pointer-events-auto select-none"
           aria-label="Grand Royal Saree Curtain - Scroll down to draw curtains"
         >
-          {/* Left Curtain Saree Panel */}
+          {/* Left Curtain Saree Panel (Authentic Banarasi Silk Saree with 24K Gold Zari Border) */}
           <div
             ref={leftCurtainRef}
-            className="absolute top-0 left-0 w-1/2 h-full bg-[linear-gradient(90deg,#3b050d_0%,#7a1624_12%,#4e0811_25%,#8F1D2C_38%,#5a0a14_52%,#9e1f32_66%,#500812_80%,#7e1725_92%,#3b050d_100%)] border-r-4 border-gold shadow-[20px_0_50px_rgba(0,0,0,0.95)] overflow-hidden"
+            className="absolute top-0 left-0 w-1/2 h-full shadow-[25px_0_65px_rgba(0,0,0,0.95)] overflow-hidden"
             style={{ willChange: "transform" }}
           >
-            {/* Realistic Silk Drapery Pleat Shadows */}
-            <div className="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(0,0,0,0.4)_0px,rgba(0,0,0,0.4)_35px,transparent_35px,transparent_70px,rgba(255,255,255,0.06)_70px,rgba(255,255,255,0.06)_105px,transparent_105px,transparent_140px)] opacity-50" />
-
-            {/* Authentic Silk Weave Texture */}
-            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#FFE699_1px,transparent_1px)] [background-size:16px_16px]" />
-
-            {/* Vertical 24K Golden Zari Brocade Border Trim along center seam */}
-            <div className="absolute top-0 right-0 w-16 sm:w-28 h-full bg-gradient-to-l from-gold/70 via-gold/25 to-transparent border-r-2 border-gold-light flex flex-col justify-around items-end pr-2 pointer-events-none">
-              {Array.from({ length: 14 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full border border-gold-light bg-gold/70 shadow-[0_0_8px_rgba(255,230,153,0.9)] my-1"
-                />
-              ))}
+            <div className="relative w-full h-[106%] -top-4 scale-[1.18] origin-right">
+              <Image
+                src="/images/saree_curtain_left.jpg"
+                alt="Royal Banarasi Silk Saree Curtain Left Drape"
+                fill
+                priority
+                sizes="50vw"
+                className="object-cover object-right filter brightness-95 contrast-105 select-none pointer-events-none"
+              />
             </div>
-            <div className="absolute top-0 right-2 w-1.5 h-full bg-gold/60" />
+            {/* Subtle Luxury Atmospheric Vignette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-dark/70 via-transparent to-dark/50 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-10 h-full bg-gradient-to-l from-gold/35 to-transparent pointer-events-none" />
           </div>
 
-          {/* Right Curtain Saree Panel */}
+          {/* Right Curtain Saree Panel (Authentic Banarasi Silk Saree with 24K Gold Zari Border) */}
           <div
             ref={rightCurtainRef}
-            className="absolute top-0 right-0 w-1/2 h-full bg-[linear-gradient(90deg,#3b050d_0%,#7e1725_8%,#500812_20%,#9e1f32_34%,#5a0a14_48%,#8F1D2C_62%,#4e0811_75%,#7a1624_88%,#3b050d_100%)] border-l-4 border-gold shadow-[-20px_0_50px_rgba(0,0,0,0.95)] overflow-hidden"
+            className="absolute top-0 right-0 w-1/2 h-full shadow-[-25px_0_65px_rgba(0,0,0,0.95)] overflow-hidden"
             style={{ willChange: "transform" }}
           >
-            {/* Realistic Silk Drapery Pleat Shadows */}
-            <div className="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(0,0,0,0.4)_0px,rgba(0,0,0,0.4)_35px,transparent_35px,transparent_70px,rgba(255,255,255,0.06)_70px,rgba(255,255,255,0.06)_105px,transparent_105px,transparent_140px)] opacity-50" />
-
-            {/* Authentic Silk Weave Texture */}
-            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#FFE699_1px,transparent_1px)] [background-size:16px_16px]" />
-
-            {/* Vertical 24K Golden Zari Brocade Border Trim along center seam */}
-            <div className="absolute top-0 left-0 w-16 sm:w-28 h-full bg-gradient-to-r from-gold/70 via-gold/25 to-transparent border-l-2 border-gold-light flex flex-col justify-around items-start pl-2 pointer-events-none">
-              {Array.from({ length: 14 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full border border-gold-light bg-gold/70 shadow-[0_0_8px_rgba(255,230,153,0.9)] my-1"
-                />
-              ))}
+            <div className="relative w-full h-[106%] -top-4 scale-[1.18] origin-left">
+              <Image
+                src="/images/saree_curtain_right.jpg"
+                alt="Royal Banarasi Silk Saree Curtain Right Drape"
+                fill
+                priority
+                sizes="50vw"
+                className="object-cover object-left filter brightness-95 contrast-105 select-none pointer-events-none"
+              />
             </div>
-            <div className="absolute top-0 left-2 w-1.5 h-full bg-gold/60" />
+            {/* Subtle Luxury Atmospheric Vignette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-dark/70 via-transparent to-dark/50 pointer-events-none" />
+            <div className="absolute top-0 left-0 w-10 h-full bg-gradient-to-r from-gold/35 to-transparent pointer-events-none" />
           </div>
 
-          {/* Center Grand Royal Atelier Medallion / Seal */}
-          <div
-            ref={curtainSealRef}
-            onClick={handleOpenCurtainClick}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 sm:w-60 sm:h-60 rounded-full border-2 border-gold bg-[#11100F]/95 shadow-[0_0_60px_rgba(184,154,90,0.95)] flex flex-col items-center justify-center p-4 text-center z-30 group cursor-pointer hover:scale-105 transition-transform"
-          >
-            {/* Outer spinning ornamental gold ring */}
+          {/* Center Grand Royal Atelier Medallion / Seal (Perfect Mathematical Flex Center) */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
             <div
-              className="absolute inset-2 rounded-full border border-gold/40 border-dashed animate-spin"
-              style={{ animationDuration: "24s" }}
-            />
+              ref={curtainSealRef}
+              onClick={handleOpenCurtainClick}
+              className="pointer-events-auto relative w-48 h-48 sm:w-56 sm:h-56 rounded-full border-2 border-gold bg-[#11100F]/95 shadow-[0_0_65px_rgba(184,154,90,0.95)] flex flex-col items-center justify-center p-5 text-center group cursor-pointer hover:scale-105 transition-transform"
+              style={{ transformOrigin: "center center" }}
+            >
+              {/* Outer spinning ornamental gold ring */}
+              <div
+                className="absolute inset-2 rounded-full border border-gold/40 border-dashed animate-spin"
+                style={{ animationDuration: "24s" }}
+              />
 
-            <span className="text-gold text-xl sm:text-2xl animate-spin mb-1" style={{ animationDuration: "10s" }}>
-              ✦
-            </span>
-            <span className="font-serif text-xl sm:text-2xl tracking-[0.25em] text-ivory font-medium">
-              {BRAND.name}
-            </span>
-            <span className="text-[9px] tracking-ultra text-gold-light uppercase font-sans mt-0.5">
-              HAUTE COUTURE ARCHIVE
-            </span>
-            <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent my-2" />
-            <div className="flex flex-col items-center gap-1">
-              <span className="text-[8px] sm:text-[9px] tracking-widest text-ivory/90 uppercase font-serif bg-vermillion/90 px-3 py-1 rounded-full border border-gold/40 group-hover:bg-vermillion transition-colors flex items-center gap-1.5 shadow-md">
-                <span>SCROLL TO DRAW CURTAINS</span>
-                <span className="text-gold animate-bounce">↓</span>
+              <span className="text-gold text-xl sm:text-2xl animate-spin mb-1" style={{ animationDuration: "10s" }}>
+                ✦
               </span>
+              <span className="font-serif text-xl sm:text-2xl tracking-[0.25em] text-ivory font-medium">
+                {BRAND.name}
+              </span>
+              <span className="text-[9px] tracking-ultra text-gold-light uppercase font-sans mt-0.5">
+                HAUTE COUTURE ARCHIVE
+              </span>
+              <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent my-2" />
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-[8px] sm:text-[9px] tracking-widest text-ivory/90 uppercase font-serif bg-vermillion/90 px-3 py-1 rounded-full border border-gold/40 group-hover:bg-vermillion transition-colors flex items-center gap-1.5 shadow-md">
+                  <span>SCROLL TO DRAW CURTAINS</span>
+                  <span className="text-gold animate-bounce">↓</span>
+                </span>
+              </div>
+
+              {/* Hanging Royal Golden Tassels */}
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1.5 pointer-events-none">
+                <div className="w-[1px] h-5 bg-gold/70" />
+                <div className="w-2 h-2 rounded-full bg-gold shadow-[0_0_8px_rgba(255,230,153,0.9)]" />
+                <div className="w-[1px] h-5 bg-gold/70" />
+              </div>
             </div>
           </div>
         </div>
