@@ -1,26 +1,246 @@
 @import "tailwindcss";
 
+@theme {
+  --color-ivory: #F6F1E8;
+  --color-ivory-light: #FCFAF6;
+  --color-ivory-muted: #EAE3D5;
+  --color-vermillion: #8F1D2C;
+  --color-vermillion-dark: #6B121F;
+  --color-vermillion-light: #B22B3D;
+  --color-gold: #B89A5A;
+  --color-gold-light: #D5BD83;
+  --color-gold-dark: #8F743B;
+  --color-dark: #11100F;
+  --color-dark-surface: #181716;
+  --color-dark-muted: #242220;
+  --color-warm-beige: #D8CBB8;
+  --color-warm-sand: #E6DCce;
+
+  --font-serif: var(--font-cormorant), "Playfair Display", "Didot", "Bodoni MT", Georgia, serif;
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F6F1E8;
+  --foreground: #11100F;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Custom smooth luxury selection */
+::selection {
+  background-color: #8F1D2C;
+  color: #F6F1E8;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base Body Styling */
+html {
+  scroll-behavior: smooth;
+  background-color: #F6F1E8;
+  color: #11100F;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F6F1E8;
+  color: #11100F;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Minimal Luxury Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #11100F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B89A5A;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8F1D2C;
+}
+
+/* Editorial Serif Utility Classes */
+.font-editorial {
+  font-family: var(--font-serif);
+  letter-spacing: -0.02em;
+}
+
+.tracking-luxury {
+  letter-spacing: 0.22em;
+}
+
+.tracking-ultra {
+  letter-spacing: 0.35em;
+}
+
+/* Film Grain Overlay */
+.film-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Subtle Gold Shimmer Effect for Accent Details */
+@keyframes goldShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #B89A5A 0%, #E8D8B0 50%, #8F743B 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes luxurySheen {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.luxury-sheen-text {
+  background: linear-gradient(90deg, #F6F1E8 0%, #D5BD83 25%, #FFFFFF 50%, #B89A5A 75%, #F6F1E8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: luxurySheen 8s ease-in-out infinite;
+}
+
+/* CRAZY LIQUID GOLD & PARTICLES ANIMATION FOR VIRAASAT */
+@keyframes crazyGoldShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  50% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* SLEEK SLIDE-PAN TEXT EFFECT FOR VIRAASAT (Smooth, High-Fashion, Not Over-Animated) */
+@keyframes slidePanSheen {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.slide-pan-gold-text {
+  background: linear-gradient(
+    90deg,
+    #B89A5A 0%,
+    #D5BD83 18%,
+    #F6F1E8 35%,
+    #FFFFFF 50%,
+    #FFE699 65%,
+    #D5BD83 82%,
+    #B89A5A 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: slidePanSheen 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: background-position;
+}
+
+@keyframes crazyAuraPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.99);
+    filter: blur(20px);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.02);
+    filter: blur(35px);
+  }
+}
+
+@keyframes crazyLetterWave {
+  0%, 100% {
+    transform: translateY(0px) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-14px) scale(1.05) rotate(-1.5deg);
+  }
+  75% {
+    transform: translateY(6px) scale(0.97) rotate(1.2deg);
+  }
+}
+
+@keyframes sparkleGleam {
+  0%, 100% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1.4) rotate(90deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 8px #FFE699) drop-shadow(0 0 16px #D5BD83);
+  }
+  60% {
+    transform: scale(1.1) rotate(180deg);
+    opacity: 0.9;
+  }
+  80% {
+    transform: scale(0.2) rotate(270deg);
+    opacity: 0.2;
+  }
+}
+
+.crazy-gold-text {
+  background: linear-gradient(
+    115deg,
+    #F6F1E8 0%,
+    #D5BD83 15%,
+    #FFFDF5 30%,
+    #FFE57F 45%,
+    #FFFFFF 55%,
+    #B89A5A 70%,
+    #F6F1E8 85%,
+    #FFE57F 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: crazyGoldShimmer 4s ease-in-out infinite;
+  will-change: background-position, transform;
+}
+
+.crazy-aura-glow {
+  animation: crazyAuraPulse 3.5s ease-in-out infinite;
+}
+
+.sparkle-diamond {
+  animation: sparkleGleam 3s ease-in-out infinite;
+}
+
+/* Thread Animation for Loom Section */
+@keyframes threadFlow {
+  0% { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.animate-thread {
+  stroke-dasharray: 1000;
+  animation: threadFlow 6s linear infinite;
 }
