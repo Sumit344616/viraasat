@@ -6,7 +6,7 @@ import { BRAND } from "@/data/brand";
 
 export default function Quote() {
   return (
-    <section className="relative w-full bg-ivory text-dark py-36 px-6 sm:px-12 md:px-16 overflow-hidden flex items-center justify-center">
+    <section className="relative w-full bg-ivory text-dark py-14 sm:py-24 lg:py-36 px-4 sm:px-12 md:px-16 overflow-hidden flex items-center justify-center">
       {/* Background Accent Monogram */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] select-none">
         <span className="font-serif text-[28vw] font-light">V</span>

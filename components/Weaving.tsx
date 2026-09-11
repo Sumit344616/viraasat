@@ -26,7 +26,7 @@ export default function Weaving() {
   return (
     <section
       id="craft"
-      className="relative w-full min-h-screen bg-dark text-ivory py-32 px-6 sm:px-12 md:px-16 overflow-hidden flex flex-col justify-between"
+      className="relative w-full min-h-[auto] lg:min-h-screen bg-dark text-ivory py-12 sm:py-20 lg:py-32 px-4 sm:px-12 md:px-16 overflow-hidden flex flex-col justify-start lg:justify-between gap-8 lg:gap-0"
     >
       {/* Animated Textile Thread Lines (SVG Warp & Weft) */}
       <div className="absolute inset-0 pointer-events-none opacity-25">

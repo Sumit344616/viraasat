@@ -50,10 +50,10 @@ export default function SignatureCollection() {
     <section
       id="signature"
       ref={containerRef}
-      className="relative w-full bg-dark-surface text-ivory py-32 px-6 sm:px-12 md:px-16 overflow-hidden"
+      className="relative w-full bg-dark-surface text-ivory py-12 sm:py-20 lg:py-32 px-4 sm:px-12 md:px-16 overflow-hidden"
     >
       {/* Editorial Header */}
-      <div className="max-w-7xl mx-auto mb-20 text-center">
+      <div className="max-w-7xl mx-auto mb-8 sm:mb-14 lg:mb-20 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/30 bg-dark/40 mb-6">
           <Sparkles className="w-3.5 h-3.5 text-gold" />
           <span className="text-[11px] tracking-luxury uppercase text-gold font-serif">

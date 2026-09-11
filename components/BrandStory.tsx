@@ -15,9 +15,9 @@ export default function BrandStory() {
   return (
     <section
       id="story"
-      className="relative w-full bg-ivory text-dark py-32 px-6 sm:px-12 md:px-16 overflow-hidden"
+      className="relative w-full bg-ivory text-dark py-12 sm:py-20 lg:py-32 px-4 sm:px-12 md:px-16 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto space-y-24">
+      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16 lg:space-y-24">
         {/* Editorial Title & Statement with Staggered Line Reveals */}
         <div className="max-w-4xl">
           <div className="flex items-center gap-2 mb-4">

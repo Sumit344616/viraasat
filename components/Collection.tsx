@@ -121,7 +121,7 @@ export default function Collection() {
     <section
       id="collection"
       ref={containerRef}
-      className="relative w-full bg-ivory text-dark min-h-screen overflow-hidden py-16 lg:py-0 lg:h-[100vh] lg:flex lg:flex-col lg:justify-between"
+      className="relative w-full bg-ivory text-dark overflow-hidden pt-6 pb-4 sm:py-10 lg:py-0 lg:min-h-screen lg:h-[100vh] lg:flex lg:flex-col lg:justify-between"
     >
       {/* Background Differential Parallax Typography */}
       <div

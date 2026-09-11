@@ -12,7 +12,7 @@ export default function Contact({ onOpenInquiry }: ContactProps) {
   return (
     <section
       id="contact"
-      className="relative w-full min-h-screen bg-dark text-ivory py-32 px-6 sm:px-12 md:px-16 overflow-hidden flex flex-col justify-between"
+      className="relative w-full min-h-[auto] lg:min-h-screen bg-dark text-ivory py-14 sm:py-24 lg:py-32 px-4 sm:px-12 md:px-16 overflow-hidden flex flex-col justify-between"
     >
       {/* Background Subtle Gradient & Accents */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-vermillion/10 rounded-full blur-[140px] pointer-events-none" />

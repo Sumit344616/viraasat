@@ -13,7 +13,7 @@ export default function Craftsmanship() {
   return (
     <section
       id="craftsmanship"
-      className="relative w-full min-h-screen bg-dark text-ivory py-32 px-6 sm:px-12 md:px-16 overflow-hidden flex flex-col justify-center"
+      className="relative w-full min-h-screen bg-dark text-ivory py-12 sm:py-20 lg:py-32 px-4 sm:px-12 md:px-16 overflow-hidden flex flex-col justify-center"
     >
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         {/* Left: Artisan Textile Image with Mask Reveal */}

@@ -119,7 +119,7 @@ export default function FabricMotion() {
     <section
       id="fabric-motion"
       ref={sectionRef}
-      className="relative w-full min-h-screen bg-dark text-ivory py-28 px-6 sm:px-12 md:px-16 flex flex-col justify-between overflow-hidden"
+      className="relative w-full min-h-[auto] lg:min-h-screen bg-dark text-ivory py-8 sm:py-16 lg:py-28 px-4 sm:px-12 md:px-16 flex flex-col justify-start lg:justify-between gap-6 lg:gap-0 overflow-hidden"
     >
       {/* Background Radial Tint */}
       <div
@@ -161,7 +161,7 @@ export default function FabricMotion() {
       {/* Interactive Pseudo-3D Tactile Fabric Showcase (Canva-Style Pan Right) */}
       <div
         ref={cardRef}
-        className="relative z-10 w-full max-w-6xl mx-auto my-10 perspective-[1200px] will-change-transform"
+        className="relative z-10 w-full max-w-6xl mx-auto my-4 sm:my-8 lg:my-10 perspective-[1200px] will-change-transform"
       >
         <div
           onMouseMove={handleMouseMove}
