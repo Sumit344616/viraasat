@@ -260,30 +260,30 @@ export default function FabricMotion() {
       {/* Bottom Interactive Hue Switcher & Inspection Mode (Canva-Style Fade In) */}
       <div
         ref={controlsRef}
-        className="relative z-20 max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center justify-between gap-6 pt-6 border-t border-gold/15 will-change-transform"
+        className="relative z-20 max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 sm:gap-6 pt-5 sm:pt-6 border-t border-gold/15 will-change-transform"
       >
-        {/* Silk Hue Selector */}
-        <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+        {/* Silk Hue Selector with 2x2 Responsive Grid */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 w-full lg:w-auto">
           <span className="text-xs tracking-luxury text-gold uppercase font-serif">
             SILK DYE SELECTION:
           </span>
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto">
             {silkHues.map((hue) => (
               <button
                 key={hue.id}
                 onClick={() => setSelectedHue(hue.id)}
-                className={`group relative flex items-center gap-2 px-3.5 py-1.5 rounded-full border transition-all duration-300 ${
+                className={`group relative flex items-center justify-center sm:justify-start gap-2 px-3 py-2.5 sm:px-3.5 sm:py-1.5 rounded-full border transition-all duration-300 w-full sm:w-auto ${
                   selectedHue === hue.id
-                    ? "border-gold bg-gold/20 text-ivory shadow-lg shadow-gold/20 scale-105"
+                    ? "border-gold bg-gold/20 text-ivory shadow-lg shadow-gold/20 scale-[1.02] sm:scale-105"
                     : "border-ivory/20 hover:border-ivory/60 text-ivory/70 hover:scale-102"
                 }`}
                 title={hue.desc}
               >
                 <span
-                  className="w-3 h-3 rounded-full border border-ivory/40"
+                  className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full border border-ivory/40 flex-shrink-0"
                   style={{ backgroundColor: hue.hex }}
                 />
-                <span className="text-[11px] font-serif tracking-wider uppercase">
+                <span className="text-[10px] sm:text-[11px] font-serif tracking-wider uppercase whitespace-nowrap">
                   {hue.name}
                 </span>
                 {selectedHue === hue.id && (
@@ -298,8 +298,8 @@ export default function FabricMotion() {
           </div>
         </div>
 
-        {/* View Details Toggle */}
-        <div className="flex items-center gap-4 sm:gap-6">
+        {/* Cycle Specimen Button */}
+        <div className="w-full lg:w-auto flex items-center justify-center">
           <button
             onClick={() => {
               setIsCycling(true);
@@ -314,7 +314,7 @@ export default function FabricMotion() {
               setSelectedHue(nextHue);
               setTimeout(() => setIsCycling(false), 650);
             }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 border border-gold/40 hover:border-gold bg-dark/60 hover:bg-gold/10 text-gold text-[11px] font-serif tracking-wider uppercase transition-all duration-300 shadow-md group"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 sm:py-1.5 border border-gold/40 hover:border-gold bg-dark/60 hover:bg-gold/10 text-gold text-[11px] font-serif tracking-wider uppercase transition-all duration-300 shadow-md group"
           >
             <RefreshCw
               className={`w-3.5 h-3.5 transition-transform duration-700 ${

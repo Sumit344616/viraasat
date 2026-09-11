@@ -69,7 +69,7 @@ export default function Footer() {
 
         {/* Bottom: Copyright */}
         <div className="pt-8 border-t border-gold/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-ivory/40 font-sans">
-          <p>© {new Date().getFullYear()} {BRAND.name}. All Rights Reserved. Not for commercial replication.</p>
+          <p>© {new Date().getFullYear()} SUMIT. All Rights Reserved. Not for commercial replication.</p>
           <p className="font-serif italic text-gold/60">Crafted as a Haute Couture Digital Experience for Saree Houses</p>
         </div>
       </div>
